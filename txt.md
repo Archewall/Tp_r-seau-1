@@ -86,6 +86,45 @@ Adresse IP choisis : 10.10.10.33 et 10.10.10.32
 *Adresse MAC de l'autre machine :*  D8-80-83-D0-03-05
 
 ### 4. netcat
+**🌞 sur le PC serveur**  
+```powershell
+.\nc.exe -l -p 8888
+```
+**Réponse :**  
+```powershell
+PS C:\Users\Maxime\Documents\netcat-1.11> .\nc.exe -l -p 8888
+```
+*Il faut attendre que le client se connecte car aucune réponse*  
+**🌞 sur le PC client**
+```powershell
+.\nc.exe 10.10.10.34 8888
+```
+**Réponse :**
+Chat ouvert aves l'autre pc   
+
+**🌞 Visualiser la connexion en cours**
+```powershell
+netstat -a -n -b | Select-String 8888 -Context 0,1
+```
+**Réponse :**
+```powershell
+PS C:\WINDOWS\system32> netstat -a -n -b | Select-String 8888 -Context 0,1
+
+>   TCP    10.10.10.34:8888       10.10.10.33:58213      ESTABLISHED
+   [nc.exe]
+```
+
+**🌞 Pour aller un peu plus loin**
+```powershell
+.\nc.exe -l -p 8888 -s 10.10.10.34
+```
+**Réponse :**  
+```powershell
+PS C:\WINDOWS\system32> netstat -a -n -b | Select-String 8888 -Context 0,1
+
+>   TCP    10.10.10.34:8888       0.0.0.0:0              LISTENING
+   [nc.exe]
+```
 
 
 ## III. Manipulations d'autres outils/protocoles côté client
