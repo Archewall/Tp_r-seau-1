@@ -27,3 +27,11 @@ la trame "offer" contient les information proposé au client
 
 ## serveur DHCP
 
+### Tableau d'adressage 
+
+    machine        |    Lan1
+```
+router.tp4.b1      |    10.4.1.254/24  
+dhcp.tp4.b1        |    10.4.1.253/24
+node1.tp4.b1       |    N/A
+node2.tp4.b1       |    10.4.1.12/24
