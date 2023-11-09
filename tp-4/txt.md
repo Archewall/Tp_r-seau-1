@@ -35,3 +35,21 @@ router.tp4.b1      |    10.4.1.254/24
 dhcp.tp4.b1        |    10.4.1.253/24
 node1.tp4.b1       |    N/A
 node2.tp4.b1       |    10.4.1.12/24
+
+pour attribuer une ip a chacune des machines j'ai utilisé la commmande :
+
+```
+cd /etc/sysconfig/network-scripts
+sudo nano ifcfg-enp0s3
+DEVICE=enp0s3
+
+BOOTPROTO=static
+ONBOOT=yes
+
+IPADDR= l'ip de la machine que je souhaite changer 
+NETMASK=255.255.255.0
+
+sudo systemctl restart NetworkManager
+```
+
+enfin pour verifier que l'ip a bien changer utiliser la commande " ip a" 
