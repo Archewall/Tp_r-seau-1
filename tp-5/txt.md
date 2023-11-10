@@ -36,4 +36,18 @@ port du serveur = 443 ;
 
 ### 1. SSH
 
-création d'une machine virtuel node1.tp5.b1 avec une ip 10.5.1.11
+création d'une machine virtuel node1.tp5.b1 avec une ip : 10.5.1.11
+
+connection en ssh 
+```
+ssh alexandre@10.5.1.11
+```
+ssh utilise un TCP
+on peut verifier grace a wireshark
+ou grace a la  commande 
+```
+ss -tulnp
+```
+
+
+### 2. routage
