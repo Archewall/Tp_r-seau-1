@@ -1,6 +1,6 @@
 # TP5 : TCP, UDP et services réseau
 
-## first steps 
+## I. first steps 
 
 application :
 
@@ -30,3 +30,10 @@ port du serveur = 443 ;
 ip = 157.23.228.39 ; 
 port du serveur = 443 ;
  port local = 52987
+
+
+## II. Setup virtuel
+
+### 1. SSH
+
+création d'une machine virtuel node1.tp5.b1 avec une ip 10.5.1.11
