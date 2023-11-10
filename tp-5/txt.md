@@ -38,7 +38,7 @@ port du serveur = 443 ;
 
 création d'une machine virtuel node1.tp5.b1 avec une ip : 10.5.1.11
 
-connection en ssh 
+connection en ssh sur git bash
 ```
 ssh alexandre@10.5.1.11
 ```
