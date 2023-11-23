@@ -43,11 +43,24 @@ connection en ssh sur git bash
 ssh alexandre@10.5.1.11
 ```
 ssh utilise un TCP
-on peut verifier grace a wireshark
+
+
+on peut verifier grace a wireshark (capture TP_3_way)
+
+avec netstat
+```
+
+proto   |   adresse locale |    adresse distante 
+
+TCP     |   10.5.1.1:50715 |    10.5.1.11:ssh
+
+```
+
 ou grace a la  commande 
 ```
 ss -tulnp
 ```
 
-
 ### 2. routage
+
+ 
