@@ -63,4 +63,94 @@ ss -tulnp
 
 ### 2. routage
 
- 
+ #### Prouvez que
+.  node1.tp5.b1 a un accès internet
+
+```
+[alexandre@node1 network-scripts]$ ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=112 time=19.5 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=112 time=19.0 ms
+
+--- 8.8.8.8 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+```
+
+node1.tp5.b1 peut résoudre des noms de domaine publics (comme ynov.com)
+
+```
+[alexandre@node1 network-scripts]$ ping hentaihaven.com
+PING hentaihaven.com (188.114.96.2) 56(84) bytes of data.
+64 bytes from 188.114.96.2 (188.114.96.2): icmp_seq=1 ttl=55 time=21.2 ms
+64 bytes from 188.114.96.2 (188.114.96.2): icmp_seq=2 ttl=55 time=22.3 ms
+64 bytes from 188.114.96.2 (188.114.96.2): icmp_seq=3 ttl=55 time=22.9 ms
+
+--- hentaihaven.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+```
+
+## Serveur WEB
+
+## Installez le paquet nginx
+
+```
+[alexandre@servweb ~]$ sudo dnf install nginx -y
+```
+
+ Créer le site web
+
+ ```
+ [alexandre@servweb var]$ sudo mkdir www
+[alexandre@servweb www]$ sudo mkdir site_web_nul
+[alexandre@servweb site_web_nul]$ sudo nano index.html
+
+# Dans le fichier
+<h1>MAAAAAaaaaaaAAAAAaaaAAAAx</h1>
+<h2>UWU</h2>
+ ```
+
+ Donner les bonnes permissions
+
+```
+[alexandre@servweb ~]$ sudo chown -R nginx:nginx /var/www/site_web_nul
+```
+
+Créer un fichier de configuration NGINX pour notre site web
+
+```
+[alexandre@servweb ~]$ sudo nano /etc/nginx/conf.d/site_web_nul.conf
+```
+
+ Démarrer le serveur web !
+
+ ```
+ [alexandre@servweb conf.d]$ sudo systemctl start nginx
+[alexandre@servweb conf.d]$ sudo systemctl status nginx
+● nginx.service - The nginx HTTP and reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; prese)
+     Active: active (running) since Fri 2023-11-10 16:54:32 CET; 11s ago
+ ```
+
+  Ouvrir le port firewall
+
+```
+[alexandre@servweb ~]$ sudo firewall-cmd --add-port=80/tcp --permanent
+success
+[alexandre@servweb ~]$ sudo firewall-cmd --reload
+success
+```
+
+Visitez le serveur web !
+
+```
+[alexandre@node1 ~]$ curl http://10.5.1.12
+<h1>AAAAAAAAAAAAAAAAAH</h1>
+<h2>UWU</h2>
+```
+
+Visualiser le port en écoute
+```
+[diane@servweb ~]$ ss -atnl
+State             Recv-Q            Send-Q                       Local Address:Port                         Peer Address:Port            Process
+LISTEN            0                 511                                0.0.0.0:80                                0.0.0.0:*
+```
